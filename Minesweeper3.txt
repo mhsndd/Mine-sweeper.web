@@ -1,0 +1,13 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="minesweeper.css">
+</head>
+<body>
+    <div class="game-pane">
+        <table id="board">
+
+        </table>
+    </div>
+    <script src="minesweeper.js"></script>
+</body>
+</html>
