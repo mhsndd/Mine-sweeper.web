@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="minesweeper.css">
+    <link rel="stylesheet" type="text/css" href="Minesweeper2.txt">
 </head>
 <body>
     <div class="game-pane">
@@ -8,6 +8,6 @@
 
         </table>
     </div>
-    <script src="minesweeper.js"></script>
+    <script src="Minesweeper.txt"></script>
 </body>
 </html>
