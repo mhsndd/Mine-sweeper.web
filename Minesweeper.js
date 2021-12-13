@@ -15,4 +15,19 @@ function renderBoard(numRows,numCols) {
         boardEl.append(trEl);
     }
 }
+
+
+function initialize(numRows,numCols){
+    let grid =new Array(numRows);
+    for (let i =0; i < numRows; i++){
+        grid[i]=new Array(numCols);
+    }
+
+    console.log(grid);
+    return grid;
+}
+
+
 renderBoard(15,20)
+
+initialize(15,20)
