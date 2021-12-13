@@ -1,17 +1,18 @@
-function renderbBoard(numRows,numCols){
+function renderBoard(numRows,numCols) {
     let boardEl = document.querySelector("#board");
 
-    for(let i=0;i<numRows;i++){
-        let trEl=document.createElement("tr");
-        for (let j=0; j< numCols;j++){
-            let trEl=document.createElement("td");
-            let cellEl=document.createElement("div");
-            tdEl.append(cellEl)
+    for  (let i=0 ;i <numRows; i++ ){
+        let trEl =document.createElement("tr");
+        for (let j=0; j< numCols;j++ ){
+            let cellEl =document.createElement("div");
+            cellEl.className="cell";
             
-            trEl.append(trEl)
+            let tdEl =document.createElement("td");
+            tdEl.append(cellEl);
+            
+            trEl.append(tdEl);
         }
-        boardEl.append(trEl)
+        boardEl.append(trEl);
     }
-
 }
-renderbBoard();
+renderBoard(15,20)
