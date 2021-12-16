@@ -21,4 +21,27 @@ body{
     width: 1.5em;
     height: 1.5em;
     text-align: center;
+    border-style: outset;
+    text-align: center;
+
+    user-select: none;
+}
+
+
+.clear{
+    border-style: solid;
+    border-color: #ccc;
+    background-color: #eee;
+}
+
+.cell.Iandmine{
+    background-color: orange;
+}
+
+.cell.Iandmine.exploded{
+    background-color: red;
+}
+
+.cell.Iandmine.success {
+    background-color: green;
 }
