@@ -179,6 +179,9 @@ function checkAllClear(grid){
 
     return true
 }
+
+
+
 let grid = initialize(9,9,15)
 
 renderBoard(9,9,grid)
