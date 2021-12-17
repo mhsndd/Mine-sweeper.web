@@ -45,3 +45,16 @@ body{
 .cell.Iandmine.success {
     background-color: green;
 }
+
+.level{  
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.level button{
+    padding: 5px 15px;
+    background-color: rgb(223, 223, 200);
+    color: rgb(182, 82, 82);
+    border-radius: 3px;
+    
+}
