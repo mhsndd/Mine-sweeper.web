@@ -66,3 +66,8 @@ body{
     text-align: center;
     margin-top: 10px;
 }
+
+.cell.flag{
+    background: rgb(168, 159, 159) url(../Mine-sweeper.web/3.jpg);
+    background-size: cover
+}

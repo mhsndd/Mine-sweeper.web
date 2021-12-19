@@ -31,7 +31,15 @@ function renderBoard(numRows,numCols,grid) {  //创建棋盘
                     checkAllClear(grid)
                     //cellEl.classList.add("clear");
                 }
-
+            })
+            cellEl.addEventListener("mousedown",(e)=>{   //标旗（右键双击）
+                if (e.button ==2 && grid[i][j].clear===false && grid[i][j].flag===false){
+                    grid[i][j].cellEl.classList.add("flag");
+                    grid[i][j].flag=true;
+                }else if (e.button ==2 && grid[i][j].clear==false){
+                    grid[i][j].cellEl.classList.remove("flag");
+                    grid[i][j].flag=false
+                }    
             })
         
 
@@ -239,10 +247,11 @@ function hard3(){
 
 
 
-document.oncontextmenu = function(e){ //右键功能取消
+document.oncontextmenu = function(e){ //单击右键功能取消
     return false
 }
 
 let gameover ={  //游戏结束后鼠标无法点击
     js:false
 }
+
