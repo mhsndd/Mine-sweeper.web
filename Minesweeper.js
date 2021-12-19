@@ -1,36 +1,40 @@
-function renderBoard(numRows,numCols,grid) {
+function renderBoard(numRows,numCols,grid) {  //创建棋盘
     let boardEl = document.querySelector("#board");
 
-    for  (let i=0 ;i <numRows; i++ ){
+    for  (let i=0 ;i <numRows; i++ ){    //创建行
         let trEl =document.createElement("tr");
-        for (let j=0; j< numCols;j++ ){
+        for (let j=0; j< numCols;j++ ){    //创建列
             let cellEl =document.createElement("div");
-            cellEl.className="cell";
+            cellEl.className="cell";    //棋盘方格的类名
             grid[i][j].cellEl=cellEl
 
-            //if (grid[i][j].count === -1){
+            //if (grid[i][j].count === -1){  //如果网格数据-1显示为雷
             //    cellEl.innerText="*";
             //}else{
-            //    cellEl.innerText=grid[i][j].count;
+            //    cellEl.innerText=grid[i][j].count; //否则显示原本数字
             //}
             
-            cellEl.addEventListener("click",(e)=>{
-                if (grid[i][j].count ===-1 ){
-                    exploded(grid, i, j, numRows ,numCols );
-                    return;
+            cellEl.addEventListener("click",(e)=>{ //棋盘方格内点击效果
+                if(gameover.js === false){
+                    if (grid[i][j].count ===-1 ){ //如果棋盘方格数字-1，执行爆炸函数\
+                        exploded(grid, i, j, numRows ,numCols );
+                        gameover.js = true;
+                        return;
+                    }
+                    if (grid[i][j].count === 0){  //如果方格数字0.继续搜索周边方格
+                        searchClearArea(grid,i ,j,numRows,numCols);
+                    }else if (grid [i][j].count>0 ){  //数字>0，清空，添加显示当前数字
+                        grid[i][j].clear= true;
+                        cellEl.classList.add("clear");
+                        grid[i][j].cellEl.innerText =grid[i][j].count
+                    }
+                    checkAllClear(grid)
+                    //cellEl.classList.add("clear");
                 }
-                if (grid[i][j].count === 0){
-                    searchClearArea(grid,i ,j,numRows,numCols);
-                }else if (grid [i][j].count>0 ){
-                    grid[i][j].clear= true;
-                    cellEl.classList.add("clear");
-                    grid[i][j].cellEl.innerText =grid[i][j].count
-                }
-                checkAllClear(grid)
-                //cellEl.classList.add("clear");
-            })
 
-            
+            })
+        
+
             let tdEl =document.createElement("td");
             tdEl.append(cellEl);
             
@@ -75,7 +79,7 @@ function initialize(numRows,numCols,numMines){
       //计算有雷周边为零的周边雷数
     for (let [row,col] of mines) {
         //
-        console.log("")
+        //console.log("")
         for (let [drow,dcol] of directions) {
             let cellRow = row + drow;
             let cellCol = col + dcol;
@@ -106,7 +110,7 @@ function initialize(numRows,numCols,numMines){
     }
     
     
-    console.log(grid);
+    //console.log(grid);
     
     return grid;
 }
@@ -138,6 +142,7 @@ function searchClearArea(grid ,row,col,numRows,numCols){
 
 function exploded(grid ,row,col,numRows,numCols){
     grid[row][col].cellEl.classList.add("exploded");
+    alert ("you lose");
 
     for (let cellRow =0; cellRow < numRows; cellRow++){
         for (let cellCol =0; cellCol < numCols; cellCol++){
@@ -162,6 +167,7 @@ function checkAllClear(grid){
             }
         }
     }
+    
 
     for (let row=0 ;row < grid.length;row++){
         let gridRow =grid[row];
@@ -180,8 +186,63 @@ function checkAllClear(grid){
     return true
 }
 
+// function difficulty1(numRows,numCols,numMines){
+//     let buttonEl2=document.querySelector("#button2");
+//     buttonEl2.addEventListener("click",(e)=>{
 
 
-let grid = initialize(9,9,15)
+//         initialize(numRows+1,numCols+1,numMines)
+//     // buttonEl1.addEventListener("click",(e)=>{
+//     //     let grid =new Array(numRows);
+//     //     for (let i =0; i < numRows; i++){
+//     //         grid[i]=new Array(numCols);
+//     //             for (let j =0; j < numCols; j++){
+//     //                 grid[i][j]={
+//     //                 clear: false,
+//     //                 count: 0
+//     //                 }
+//     //             }
+//     //     }
+//     })
+//         console.log(numRows,numCols,numMines)
+// }
 
-renderBoard(9,9,grid)
+function hard1(){
+    //let buttonEl1=document.querySelector("#button1");
+    //buttonEl1.addEventListener("click",(e)=>{
+    document.getElementById("board").innerHTML="";   //在board类中添加空元素，避免重复调用函数
+        let grid =initialize(9,9,15)
+        renderBoard(9,9,grid)
+        gameover.js = false;
+}
+
+function hard2(){
+    //let buttonEl2=document.querySelector("#button2");
+    //buttonEl2.addEventListener("click",(e)=>{
+        document.getElementById("board").innerHTML="";
+        let grid =initialize(12,12,30)
+        renderBoard(12,12,grid)
+        gameover.js = false
+
+}
+
+function hard3(){
+    ///let buttonEl3=document.querySelector("#button3");
+    //buttonEl3.addEventListener("click",(e)=>{
+        document.getElementById("board").innerHTML="";
+        let grid =initialize(15,15,50)
+        renderBoard(15,15,grid)
+        gameover.js = false
+}
+
+
+
+
+
+document.oncontextmenu = function(e){ //右键功能取消
+    return false
+}
+
+let gameover ={  //游戏结束后鼠标无法点击
+    js:false
+}

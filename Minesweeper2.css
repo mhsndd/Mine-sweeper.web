@@ -17,12 +17,12 @@ body{
 
 
 .cell {
-    background-color: #ccc;
+    background-color:#ccc;
     width: 1.5em;
     height: 1.5em;
-    text-align: center;
     border-style: outset;
     text-align: center;
+    background: #ccc url(../Mine-sweeper.web/3.jpg);
 
     user-select: none;
 }
@@ -32,10 +32,13 @@ body{
     border-style: solid;
     border-color: #ccc;
     background-color: #eee;
+
 }
 
 .cell.Iandmine{
     background-color: orange;
+    background: #ccc url(../Mine-sweeper.web/1639826795246.jpg);
+    background-size: cover;
 }
 
 .cell.Iandmine.exploded{
@@ -57,4 +60,9 @@ body{
     color: rgb(182, 82, 82);
     border-radius: 3px;
     
+}
+
+.info{
+    text-align: center;
+    margin-top: 10px;
 }
