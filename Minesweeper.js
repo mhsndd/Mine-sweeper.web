@@ -59,7 +59,7 @@ const directions=[
     [1,-1],[1,0],[1,1],
 ]
 
-function initialize(numRows,numCols,numMines){
+function initialize(numRows,numCols,numMines){ //初始化
     let grid =new Array(numRows);
     for (let i =0; i < numRows; i++){
         grid[i]=new Array(numCols);
@@ -75,8 +75,8 @@ function initialize(numRows,numCols,numMines){
     let mines =[];
     for (let k=0;k < numMines;k++) {
         let cellSn =Math.trunc(Math.random() *numRows * numCols);
-        let row =Math.trunc(cellSn / numCols);
-        let col =cellSn % numCols;
+        let row =Math.trunc(cellSn / numCols);   //行的计算
+        let col =cellSn % numCols;  //列计算
 
 
         grid[row][col].count= -1;
@@ -123,7 +123,7 @@ function initialize(numRows,numCols,numMines){
     return grid;
 }
 
-function searchClearArea(grid ,row,col,numRows,numCols){
+function searchClearArea(grid ,row,col,numRows,numCols){  //搜索周边区域
     let gridCell =grid[row][col];
     gridCell.clear=true;
     gridCell.cellEl.classList.add("clear");
@@ -148,7 +148,7 @@ function searchClearArea(grid ,row,col,numRows,numCols){
     }                
 }
 
-function exploded(grid ,row,col,numRows,numCols){
+function exploded(grid ,row,col,numRows,numCols){  //爆炸函数
     grid[row][col].cellEl.classList.add("exploded");
     alert ("you lose");
 
@@ -165,7 +165,7 @@ function exploded(grid ,row,col,numRows,numCols){
     }
 }
 
-function checkAllClear(grid){
+function checkAllClear(grid){   //检查清空
     for (let row=0 ;row < grid.length;row++){
         let gridRow =grid[row];
         for (let col =0; col <gridRow.length ;col++){
@@ -215,8 +215,8 @@ function checkAllClear(grid){
 //         console.log(numRows,numCols,numMines)
 // }
 
-function hard1(){
-    //let buttonEl1=document.querySelector("#button1");
+function hard1(){  //简单难度
+    //let buttonEl1=document.querySelector("#button1" );
     //buttonEl1.addEventListener("click",(e)=>{
     document.getElementById("board").innerHTML="";   //在board类中添加空元素，避免重复调用函数
         let grid =initialize(9,9,15)
@@ -224,7 +224,7 @@ function hard1(){
         gameover.js = false;
 }
 
-function hard2(){
+function hard2(){   //中级难度
     //let buttonEl2=document.querySelector("#button2");
     //buttonEl2.addEventListener("click",(e)=>{
         document.getElementById("board").innerHTML="";
@@ -234,7 +234,7 @@ function hard2(){
 
 }
 
-function hard3(){
+function hard3(){   //高级难度
     ///let buttonEl3=document.querySelector("#button3");
     //buttonEl3.addEventListener("click",(e)=>{
         document.getElementById("board").innerHTML="";
